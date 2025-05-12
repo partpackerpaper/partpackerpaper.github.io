@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bulma css template -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <!-- ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <!-- three.js -->
+  <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+        }
+    }
+  </script>
+  <!-- partviewer -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="partviewer.css" />
+
+  <title>
+    PartPacker
+  </title>
+  <link rel="icon" href="icon.ico">
+</head>
+<body>
+  <section class="section">
+
+  <div class="container has-text-centered">
+    <!-- paper title -->
+    <p class="title is-3"> Efficient Part-level 3D Object Generation via Dual Volume Packing </p>
+    
+    <!-- authors -->
+    <p class="title is-5 mt-2"> 
+      Authors Anonymized
+    </p>
+   
+  </div>
+
+  <!-- main container -->
+  <div class="container is-max-desktop has-text-centered">
+
+    <!-- abstract -->
+    <p class="title is-3 mt-5 has-text-centered"> Abstract </p>
+    <p class="content is-size-6 has-text-left">
+Recent progress in 3D object generation has greatly improved both quality and efficiency.
+However, most existing methods generate a single mesh with all parts fused together, which limits the ability to edit or manipulate individual parts.
+A key challenge in part-level generation is that different objects may have a varying number of components.
+To address this, we propose a new end-to-end framework for part-level 3D object generation.
+Given a single input image, our method generates high-quality 3D shapes with an arbitrary number of complete and semantically meaningful parts.
+We introduce a dual volume packing strategy that organizes all parts into two complementary volumes, allowing for the creation of complete and interleaved parts that assemble into the final object.
+Experiments show that our model achieves better quality, diversity, and generalization than previous image-based part-level generation methods.
+    </p>
+
+    
+    <!-- demo -->
+    
+    <p class="title is-3 mt-5 has-text-centered"> Interactive Results </p>
+
+    <div class="partviewer">
+        <!-- Scene Viewer -->
+        <div id="loading-overlay">
+        <div class="loading-spinner"></div>
+        </div>
+            <div id="viewer-container"></div>
+            <div id="button-block" style="text-align: center; margin: 10px auto;"></div>
+            <div class="swiper">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-wrapper" id="image-slider"></div>
+        </div>
+    </div>
+
+    <script type="module" src="partviewer.js"></script>
+    
+    <!-- method -->
+    <p class="title is-3 mt-5 has-text-centered"> Dual Volume Packing </p>
+    <p class="content is-size-6 has-text-left">
+        Instead of generating parts one-by-one, we propose to <b>pack as many disjoint parts as possible into the same volume</b> to maximize spatial efficiency and minimize computational cost.
+    </p>
+    <div>
+        <img src="media/method.png" alt="Method" class="image-item img large-image z-depth-1">
+    </div>
+
+    <p class="title is-3 mt-5 has-text-centered"> Network Architecture </p>
+    <p class="content is-size-6 has-text-left">
+        Our network contains a VAE model and a rectified flow model to denoise the latent code conditioned on the input image.
+        Differently, we generate <i>dual latent codes</i> instead of one at the same time.
+    </p>
+
+    <div>
+        <img src="media/network.png" alt="Network" class="image-item img large-image z-depth-1">
+    </div>
+    
+    <!-- results -->
+    <p class="title is-3 mt-5 has-text-centered"> Results </p>
+    <p class="content is-size-6 has-text-left">
+        Our method generates more diverse and complete parts with faster speed.
+    </p>
+    
+    <div>
+        <img src="media/compare_3dgen.png" alt="Comparison" class="image-item img large-image z-depth-1">
+    </div>
+
+    <div>
+        <img src="media/compare_part.png" alt="Comparison" class="image-item img large-image z-depth-1">
+    </div>
+    
+  </div>
+
+
+  </section>
+</body>
+</html>
